@@ -8,7 +8,7 @@ class Playlists extends Service
       tracks: []
 
     playlist.tracks.push track
-    playlist = @calculate_playlist_duration playlist
+    playlist = @calculate_playlist_duration_coolness playlist
 
     return playlist
 
@@ -49,18 +49,21 @@ class Playlists extends Service
       defer.resolve "This track already exists in this playlist."
     else
       playlist.tracks.push track
-      playlist = @calculate_playlist_duration playlist
+      playlist = @calculate_playlist_duration_coolness playlist
       @save playlist
       defer.resolve "Success!"
 
     return defer.promise
 
-  calculate_playlist_duration: (playlist) ->
+  calculate_playlist_duration_coolness: (playlist) ->
     total_duration = 0
+    coolness = 0
 
     _.each playlist.tracks, (track) ->
       total_duration = total_duration + track.duration_ms
+      coolness += track.duration_ms * (track.popularity or 0) / total_duration
 
     playlist.duration = total_duration
+    playlist.coolness = parseInt coolness, 10
 
     return playlist

@@ -1,8 +1,9 @@
 ul
   li(ng-repeat="playlist in playlists")
     h3 
-      | {{playlist.name}} 
-      span / Duration: {{playlist.duration | timeConversion }}
+      | {{playlist.name}} <br />
+      span Duration: {{playlist.duration | timeConversion}} <br />
+      span Coolness: {{playlist.coolness}}
 
     ul.tracks
       li(ng-repeat="track in playlist.tracks")
@@ -10,5 +11,5 @@ ul
         div.info
           h3 {{track.name}}
           p {{track.artists[0].name}}
-          p Duration: {{track.duration_ms | timeConversion }}
-          p Popularity: {{track.popularity}}
+          p(ng-if="track.duration_ms") Duration: {{track.duration_ms | timeConversion }}
+          p(ng-if="track.popularity") Popularity: {{track.popularity}}
