@@ -7,6 +7,7 @@ class Playlists extends Service
       tags: []
       tracks: []
 
+    track.order = 0
     playlist.tracks.push track
     playlist = @calculate_playlist_duration_coolness playlist
 
@@ -39,6 +40,26 @@ class Playlists extends Service
       defer.resolve {}
       return defer.promise
 
+  reorder: (track, playlist, direction) ->
+    prev_track = _.find playlist.tracks,
+      order: track.order - 1
+
+    next_track = _.find playlist.tracks,
+      order: track.order + 1
+
+    if direction is 'up'
+      track.order = track.order - 1
+      track.order = if track.order < 0 then 0 else track.order
+      if prev_track
+        prev_track.order = prev_track.order + 1
+    else
+      track.order = track.order + 1
+      track.order = if track.order > ( playlist.tracks.length - 1 ) then ( playlist.tracks.length - 1 ) else track.order
+      if next_track
+        next_track.order = next_track.order - 1
+
+    @save playlist
+
   add_track: (track, playlist) ->
     defer = @$q.defer()
 
@@ -48,6 +69,9 @@ class Playlists extends Service
     if track_exists
       defer.resolve "This track already exists in this playlist."
     else
+      last_track = _.last(playlist.tracks)
+      track.order = last_track.order + 1
+
       playlist.tracks.push track
       playlist = @calculate_playlist_duration_coolness playlist
       @save playlist
