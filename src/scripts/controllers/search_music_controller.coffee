@@ -1,12 +1,13 @@
 class SearchMusic extends Controller
   typing_timer: 0
 
-  constructor: (@$scope, @$element, @$timeout, @spotifyService, @localStorageService) ->
+  constructor: (@$scope, @$element, @$timeout, @spotifyService, @playlistsService) ->
     do @cache_DOM_elements
     do @set_triggers
 
+    do @get_playlists
     do @define_template_methods
-
+    
   cache_DOM_elements: ->
     @form = @$element.find('form')
     @search_field = @form.find('input[type=text]')
@@ -16,6 +17,7 @@ class SearchMusic extends Controller
 
   define_template_methods: ->
     @$scope.add_to_playlist = @add_to_playlist
+    @$scope.create_playlist = @create_playlist
 
   set_timeout: (e) =>
     if @searchTimeout? then clearTimeout @searchTimeout
@@ -31,6 +33,14 @@ class SearchMusic extends Controller
       .then (response) =>
         @$scope.tracks = if response.status == 200 then response.data.tracks else {}  
 
-  add_to_playlist: (track) =>
+  get_playlists: ->
+    @playlistsService.list()
+      .then (response) =>
+        @$scope.playlists = response
+
+  create_playlist: (track) =>
     console.log track
-    console.log @localStorageService
+    
+  add_to_playlist: (track, playlist) =>
+    console.log track
+    console.log playlist

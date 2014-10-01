@@ -12,4 +12,9 @@ ul(ng-if="tracks.items.length")
 				li
 					a(href="{{track.preview_url}}", target="_blank") Preview
 				li
-					a(ng-click="add_to_playlist(track)") Add to playlist
+					div Add to playlist
+						ul
+							li
+								a(ng-click="create_playlist(track)") Create a new playlist
+							li(ng-repeat="playlist in playlists")
+								a(ng-click="add_to_playlist(track, playlist)") {{playlist.name}}
