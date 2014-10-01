@@ -3,5 +3,4 @@ class FooterDirective extends Directive
     return {
       restrict: 'E'
       templateUrl: '/partials/directives/footer.html'
-      controller: 'footerController'
     }
