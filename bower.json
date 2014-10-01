@@ -21,6 +21,7 @@
     "angular-loader": "~1.2.18",
     "angular-resource": "~1.2.18",
     "angular-animate": "~1.2.18",
+    "angular-local-storage": "~0.0.7",
     "angular-cookies": "~1.2.18"
   }
 }
