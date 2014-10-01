@@ -5,35 +5,83 @@
 @import "fonts.styl"
 @import "mixins.styl"
 
+body, html
+  width 100%
+  height 100%
+
 body
-	background BG
+  background BG
 
 #wrap
-	padding 20px 10px
-	min-width 300px
-	max-width 1004px
-	margin 0 auto
-	color TEXT
-	
-	#header
-		h1
-			display inline-block
-			a
-				font-family 'Open Sans Condensed', sans-serif
-				color GREEN
-				text-transform uppercase
-				font-size 30px
-				text-decoration none
+  padding 20px 10px 10px
+  min-width 300px
+  max-width 1004px
+  margin 0 auto
+  color TEXT
+  
+  #header
+    display inline-block
+    margin-bottom 10px
+    h1
+      display inline-block
+      a
+        font-family 'Open Sans Condensed', sans-serif
+        color GREEN
+        text-transform uppercase
+        font-size 30px
+        text-decoration none
 
-		ul
-			display inline-block
-			li
-				display inline-block
-				margin-left 10px
+    h2
+      font-family 'Open Sans Condensed', sans-serif
+      color GRAY
+      text-transform uppercase
+      font-size 16.7px
+      margin-top 5px
 
-				a
-					font-family 'Open Sans Condensed', sans-serif
-					color TEXT
-					text-transform uppercase
-					font-size 12px
-					text-decoration none
+    ul
+      display inline-block
+      li
+        display inline-block
+        margin-left 10px
+
+        a
+          font-family 'Open Sans Condensed', sans-serif
+          color GRAY
+          text-transform uppercase
+          font-size 12px
+          text-decoration none
+          
+          &.active
+            color WHITE
+
+  #search-music-directive
+    input
+      margin 0
+      background BG
+      border 1px solid DGRAY
+      color GRAY
+      width 180px
+      padding 5px 10px
+      outline none
+
+    *::-webkit-input-placeholder
+      color DGRAY
+
+    *:-moz-placeholder
+      color DGRAY
+
+    *::-moz-placeholder
+      color DGRAY
+
+    *:-ms-input-placeholder
+      color DGRAY
+
+  #footer
+    position fixed
+    bottom 10px
+
+    p
+      font-family 'Open Sans Condensed', sans-serif
+      color GRAY
+      text-transform uppercase
+      font-size 12px

@@ -1,20 +1,21 @@
-form
-	fieldset
-		input(type="text", placeholder="Ex: The Trooper")
+#search-music-directive
+	form
+		fieldset
+			input(type="text", placeholder="Ex: The Trooper")
 
-ul(ng-if="tracks.items.length")
-	li(ng-repeat="track in tracks.items")
-		img(ng-src="{{track.album.images[2].url}}")
-		div.info
-			h3 {{track.name}}
-			p {{track.artists[0].name}}
-			ul
-				li
-					a(href="{{track.preview_url}}", target="_blank") Preview
-				li
-					div Add to playlist
-						ul
-							li
-								a(ng-click="create_playlist(track)") Create a new playlist
-							li(ng-repeat="playlist in playlists")
-								a(ng-click="add_to_playlist(track, playlist)") {{playlist.name}}
+	ul(ng-if="tracks.items.length")
+		li(ng-repeat="track in tracks.items")
+			img(ng-src="{{track.album.images[2].url}}")
+			div.info
+				h3 {{track.name}}
+				p {{track.artists[0].name}}
+				ul
+					li
+						a(href="{{track.preview_url}}", target="_blank") Preview
+					li
+						div Add to playlist
+							ul
+								li
+									a(ng-click="create_playlist(track)") Create a new playlist
+								li(ng-repeat="playlist in playlists")
+									a(ng-click="add_to_playlist(track, playlist)") {{playlist.name}}
