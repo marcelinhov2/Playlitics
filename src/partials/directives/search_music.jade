@@ -1,0 +1,6 @@
+form
+	fieldset
+		input(type="text", placeholder="Ex: The Trooper")
+
+ul(ng-if="tracks.items.length")
+	li(ng-repeat="track in tracks.items") {{track.name}}
