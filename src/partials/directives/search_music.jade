@@ -5,7 +5,7 @@
 
 	ul(ng-if="tracks.items.length")
 		li(ng-repeat="track in tracks.items")
-			img(ng-src="{{track.album.images[2].url}}")
+			img(ng-src="{{track.album.images[1].url}}")
 			div.info
 				h3 {{track.name}}
 				p {{track.artists[0].name}}
