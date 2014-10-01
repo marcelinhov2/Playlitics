@@ -21,3 +21,4 @@ class ModalPlaylist extends Controller
     @playlistsService.save(@$scope.playlist)
       .then =>
         @$rootScope.$broadcast "updatePlaylists"
+        @$scope.playlist = ''

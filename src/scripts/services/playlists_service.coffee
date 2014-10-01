@@ -8,6 +8,7 @@ class Playlists extends Service
       tracks: []
 
     playlist.tracks.push track
+    playlist = @calculate_playlist_duration playlist
 
     return playlist
 
@@ -23,16 +24,17 @@ class Playlists extends Service
     @list().then (response) =>
 
       current_playlists = if response then response else []
-  
-      if !playlist.id
+
+      if playlist.id == undefined
         playlist.id = if response then response.length else 0
+      else
+        others_playlists = _.reject current_playlists,
+          id: playlist.id
 
-      playlist_exists = _.find current_playlists,
-        id: playlist.id
+        current_playlists = others_playlists
 
-      if !playlist_exists
-        current_playlists.push playlist
-        @localStorageService.set 'playlists', current_playlists
+      current_playlists.push playlist
+      @localStorageService.set 'playlists', current_playlists
 
       defer.resolve {}
       return defer.promise
@@ -47,7 +49,18 @@ class Playlists extends Service
       defer.resolve "This track already exists in this playlist."
     else
       playlist.tracks.push track
+      playlist = @calculate_playlist_duration playlist
       @save playlist
       defer.resolve "Success!"
 
     return defer.promise
+
+  calculate_playlist_duration: (playlist) ->
+    total_duration = 0
+
+    _.each playlist.tracks, (track) ->
+      total_duration = total_duration + track.duration_ms
+
+    playlist.duration = total_duration
+
+    return playlist
