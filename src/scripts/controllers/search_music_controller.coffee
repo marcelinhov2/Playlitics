@@ -43,5 +43,6 @@ class SearchMusic extends Controller
     @$rootScope.$broadcast "toggleModalPlaylist", track
     
   add_to_playlist: (track, playlist) =>
-    console.log track
-    console.log playlist
+    @playlistsService.add_track(track, playlist)
+      .then (response) =>
+        alert response

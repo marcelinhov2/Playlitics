@@ -1,16 +1,15 @@
 class Playlists extends Service
-  playlist:
-    name: ''
-    tags: []
-    tracks: []
-
   constructor: (@$q, @localStorageService) ->
 
   create: (track) ->
-    playlists = @localStorageService.get('playlists')
-    @playlist.tracks.push track
+    playlist =
+      name: ''
+      tags: []
+      tracks: []
 
-    return @playlist
+    playlist.tracks.push track
+
+    return playlist
 
   list: ->
     defer = @$q.defer()
@@ -24,12 +23,31 @@ class Playlists extends Service
     @list().then (response) =>
 
       current_playlists = if response then response else []
-      playlist.id = if response then response.length else 0
+  
+      if !playlist.id
+        playlist.id = if response then response.length else 0
 
-      current_playlists.push playlist
+      playlist_exists = _.find current_playlists,
+        id: playlist.id
 
-      @localStorageService.set 'playlists', current_playlists
+      if !playlist_exists
+        current_playlists.push playlist
+        @localStorageService.set 'playlists', current_playlists
 
       defer.resolve {}
-
       return defer.promise
+
+  add_track: (track, playlist) ->
+    defer = @$q.defer()
+
+    track_exists = _.find playlist.tracks,
+      id: track.id
+
+    if track_exists
+      defer.resolve "This track already exists in this playlist."
+    else
+      playlist.tracks.push track
+      @save playlist
+      defer.resolve "Success!"
+
+    return defer.promise
