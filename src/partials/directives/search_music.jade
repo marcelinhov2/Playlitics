@@ -3,4 +3,13 @@ form
 		input(type="text", placeholder="Ex: The Trooper")
 
 ul(ng-if="tracks.items.length")
-	li(ng-repeat="track in tracks.items") {{track.name}}
+	li(ng-repeat="track in tracks.items")
+		img(ng-src="{{track.album.images[2].url}}")
+		div.info
+			h3 {{track.name}}
+			p {{track.artists[0].name}}
+			ul
+				li
+					a(href="{{track.preview_url}}", target="_blank") Preview
+				li
+					a(href="#") Add to playlist
