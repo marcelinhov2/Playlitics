@@ -3,7 +3,8 @@ ul
     h3 
       | {{playlist.name}} <br />
       span Duration: {{playlist.duration | timeConversion}} <br />
-      span Coolness: {{playlist.coolness}}
+      span Coolness: {{playlist.coolness}} <br />
+      span Tags: {{playlist.tags}}
 
     ul.tracks
       li(ng-repeat="track in playlist.tracks | orderBy:predicate")
