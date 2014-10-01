@@ -55,13 +55,25 @@ class Playlists extends Service
 
     return defer.promise
 
+  remove_track: (track, playlist) ->
+    defer = @$q.defer()
+
+    playlist.tracks = _.reject playlist.tracks,
+      id: track.id
+
+    playlist = @calculate_playlist_duration_coolness playlist
+    @save playlist
+    defer.resolve "Track removed!"
+
+    return defer.promise
+
   calculate_playlist_duration_coolness: (playlist) ->
     total_duration = 0
     coolness = 0
 
     _.each playlist.tracks, (track) ->
-      total_duration = total_duration + track.duration_ms
-      coolness += track.duration_ms * (track.popularity or 0) / total_duration
+      total_duration += track.duration_ms
+      coolness += ( track.duration_ms * (track.popularity or 0) ) / total_duration
 
     playlist.duration = total_duration
     playlist.coolness = parseInt coolness, 10
