@@ -1,12 +1,35 @@
 class Playlists extends Service
+  playlist:
+    name: ''
+    tags: []
+    tracks: []
+
   constructor: (@$q, @localStorageService) ->
 
-  create: () ->
+  create: (track) ->
+    playlists = @localStorageService.get('playlists')
+    @playlist.tracks.push track
 
-  list: () ->
-  	defer = @$q.defer()
-  	defer.resolve @localStorageService.get 'playlists'
+    return @playlist
 
-  	return defer.promise
+  list: ->
+    defer = @$q.defer()
+    defer.resolve @localStorageService.get 'playlists'
 
-  save_to: () ->
+    return defer.promise
+
+  save: (playlist) ->
+    defer = @$q.defer()
+
+    @list().then (response) =>
+
+      current_playlists = if response then response else []
+      playlist.id = if response then response.length else 0
+
+      current_playlists.push playlist
+
+      @localStorageService.set 'playlists', current_playlists
+
+      defer.resolve {}
+
+      return defer.promise

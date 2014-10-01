@@ -1,1 +1,10 @@
-p modal_playlist
+div#modal_playlist(ng-show="playlist")
+	form(ng-submit="save_playlist()")
+		fieldset
+			label Name:
+			input(type="text", ng-model="playlist.name" placeholder="Ex: Mood Booster")
+		fieldset
+			label Tags:
+			input(type="text", ng-model="playlist.tags" placeholder="Ex: weekend")
+		fieldset
+			button Save

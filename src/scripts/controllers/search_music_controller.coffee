@@ -1,7 +1,7 @@
 class SearchMusic extends Controller
   typing_timer: 0
 
-  constructor: (@$scope, @$element, @$timeout, @spotifyService, @playlistsService) ->
+  constructor: (@$scope, @$rootScope, @$element, @$timeout, @spotifyService, @playlistsService) ->
     do @cache_DOM_elements
     do @set_triggers
 
@@ -14,6 +14,7 @@ class SearchMusic extends Controller
 
   set_triggers: ->
     @search_field.bind "keyup", @set_timeout
+    @$rootScope.$on "updatePlaylists", @get_playlists
 
   define_template_methods: ->
     @$scope.add_to_playlist = @add_to_playlist
@@ -33,13 +34,13 @@ class SearchMusic extends Controller
       .then (response) =>
         @$scope.tracks = if response.status == 200 then response.data.tracks else {}  
 
-  get_playlists: ->
+  get_playlists: =>
     @playlistsService.list()
       .then (response) =>
         @$scope.playlists = response
 
   create_playlist: (track) =>
-    console.log track
+    @$rootScope.$broadcast "toggleModalPlaylist", track
     
   add_to_playlist: (track, playlist) =>
     console.log track

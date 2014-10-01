@@ -1,3 +1,24 @@
 class ModalPlaylist extends Controller
-  constructor: () ->
-  	console.log 'teste'
+  constructor: (@$scope, @$rootScope, @$element, @playlistsService) ->
+    do @cache_DOM_elements
+    do @set_triggers
+
+    do @define_template_methods
+
+  cache_DOM_elements: ->
+    @container = $(@$element.find('#modal_playlist'))
+
+  set_triggers: ->
+    @$rootScope.$on "toggleModalPlaylist", @create_playlist
+
+  define_template_methods: ->
+    @$scope.save_playlist = @save_playlist
+      
+  create_playlist: (track) =>
+    @$scope.playlist = @playlistsService.create track
+
+  save_playlist: =>
+    @playlistsService.save(@$scope.playlist)
+      .then =>
+        console.log 'teste'
+        @$rootScope.$broadcast "updatePlaylists"
