@@ -3,4 +3,5 @@ class HeaderDirective extends Directive
     return {
       restrict: 'E'
       templateUrl: '/partials/directives/header.html'
+      controller: 'headerController'
     }
