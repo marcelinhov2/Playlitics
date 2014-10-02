@@ -51,6 +51,7 @@ body
       overflow hidden
       display inline-block
       margin 12px
+      border 1px solid #161817
 
       img
         width 180px
@@ -102,9 +103,6 @@ body
 
             .extra
               margin-top 20px
-              p
-                span
-                  color GREEN
 
         .options
           width 100%
@@ -157,6 +155,9 @@ body
                     pointer-events none
                     cursor default
                     color GREEN !important
+
+                &.disable
+                  display none
   
   #header
     text-align center
@@ -207,6 +208,22 @@ body
     display block
     margin 0 auto
     text-align center
+
+  #list_playlists
+      margin-top 30px
+
+    h3, p
+      font-family 'Open Sans Condensed', sans-serif
+      color GRAY
+      text-transform uppercase
+      font-size 14px
+      text-decoration none
+      line-height 16px
+
+    h3
+      color WHITE
+      font-size 18px
+      margin 15px 0 5px
 
   #modal_playlist
     position fixed

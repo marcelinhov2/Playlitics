@@ -40,12 +40,17 @@ class Playlists extends Service
       defer.resolve {}
       return defer.promise
 
-  reorder: (track, playlist, direction) ->
-    prev_track = _.find playlist.tracks,
+  get_prev_track: (track, playlist) ->
+    return _.find playlist.tracks,
       order: track.order - 1
 
-    next_track = _.find playlist.tracks,
+  get_next_track: (track, playlist) ->
+    return _.find playlist.tracks,
       order: track.order + 1
+
+  reorder: (track, playlist, direction) ->
+    prev_track = @get_prev_track(track, playlist)
+    next_track = @get_next_track(track, playlist)
 
     if direction is 'up'
       track.order = track.order - 1
