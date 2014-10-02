@@ -29,13 +29,13 @@ make server
 ```
 
 ###Compiling app for development
-This command compiles project and generates source maps. Output goes to ```sh app/``` folder
+This command compiles project. Output goes to ```app/``` folder
 ```
 make compile
 ```
 
 ###Building the App for Production
-This command compiles project and optimizes it for production. Output goes to ```sh dist/``` folder
+This command compiles project and optimizes it for production. Output goes to ```dist/``` folder
 ```
 make build
 ```
