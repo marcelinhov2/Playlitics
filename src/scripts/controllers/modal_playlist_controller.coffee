@@ -13,6 +13,7 @@ class ModalPlaylist extends Controller
 
   define_template_methods: ->
     @$scope.save_playlist = @save_playlist
+    @$scope.close = @close
       
   create_playlist: (e, track) =>
     @$scope.playlist = @playlistsService.create track
@@ -22,3 +23,6 @@ class ModalPlaylist extends Controller
       .then =>
         @$rootScope.$broadcast "updatePlaylists"
         @$scope.playlist = ''
+
+  close: =>
+    @$scope.playlist = ''
