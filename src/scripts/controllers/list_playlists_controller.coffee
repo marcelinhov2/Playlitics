@@ -1,16 +1,8 @@
 class ListPlaylists extends Controller
   constructor: (@$scope, @$element, @playlistsService) ->
-    do @cache_DOM_elements
-    do @set_triggers
-
     do @define_template_methods
-
     do @get_playlists
     
-  cache_DOM_elements: ->
-
-  set_triggers: ->
-
   define_template_methods: ->
     @$scope.remove_from_playlist = @remove_from_playlist
     @$scope.order = @order
