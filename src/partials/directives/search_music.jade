@@ -6,12 +6,12 @@
   ul.tracks(ng-if="tracks.items.length")
     li(ng-repeat="track in tracks.items")
       img(ng-src="{{track.album.images[1].url}}")
-      div.info
+      div.info(onclick="")
         .track
           .text
             h3 {{track.name}}
             p {{track.artists[0].name}}
-        .options
+        .options(onclick="")
           div
             h4 Add to playlist
             ul
