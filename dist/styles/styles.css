@@ -8683,13 +8683,16 @@ body *:-ms-input-placeholder {
   padding: 20px 0;
   transition: background 0.5s ease;
 }
-#wrap .tracks > li .info:hover {
+#wrap .tracks > li .info:hover,
+#wrap .tracks > li .info:focus {
   background: rgba(18,19,20,0.98);
 }
-#wrap .tracks > li .info:hover .track {
+#wrap .tracks > li .info:hover .track,
+#wrap .tracks > li .info:focus .track {
   right: 100%;
 }
-#wrap .tracks > li .info:hover .options {
+#wrap .tracks > li .info:hover .options,
+#wrap .tracks > li .info:focus .options {
   right: 0;
 }
 #wrap .tracks > li .info .track {
@@ -8735,7 +8738,8 @@ body *:-ms-input-placeholder {
 #wrap .tracks > li .info .options .remove {
   color: #9d0007;
 }
-#wrap .tracks > li .info .options .remove:hover {
+#wrap .tracks > li .info .options .remove:hover,
+#wrap .tracks > li .info .options .remove:focus {
   color: #df0000;
 }
 #wrap .tracks > li .info .options div {
@@ -8767,7 +8771,8 @@ body *:-ms-input-placeholder {
   text-decoration: none;
   display: block;
 }
-#wrap .tracks > li .info .options div ul li a:hover {
+#wrap .tracks > li .info .options div ul li a:hover,
+#wrap .tracks > li .info .options div ul li a:focus {
   color: #dfe0e6;
 }
 #wrap .tracks > li .info .options div ul li a.active {
@@ -8809,7 +8814,8 @@ body *:-ms-input-placeholder {
   text-decoration: none;
 }
 #wrap #header ul li a.active,
-#wrap #header ul li a:hover {
+#wrap #header ul li a:hover,
+#wrap #header ul li a:focus {
   color: #dfe0e6;
 }
 #wrap #search-music-directive {
@@ -8919,7 +8925,9 @@ body *:-ms-input-placeholder {
   opacity: 0.8;
 }
 #wrap #modal_playlist .content .centralize form fieldset button:hover,
-#wrap #modal_playlist .content .centralize form fieldset a:hover {
+#wrap #modal_playlist .content .centralize form fieldset a:hover,
+#wrap #modal_playlist .content .centralize form fieldset button:focus,
+#wrap #modal_playlist .content .centralize form fieldset a:focus {
   opacity: 1;
 }
 #wrap #modal_playlist .content .centralize form fieldset a {
