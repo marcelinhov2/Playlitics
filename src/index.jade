@@ -12,8 +12,9 @@ html(lang="en")
   body(ng-app="app" ng-controller="appController")
     #wrap
       header-directive
-      
-      ng-view(id="ng_view")
+  
+      #content
+        ng-view(id="ng_view", class="at-view-slide-in-left at-view-flip-out-right-opposite")
 
       modal-playlist-directive
 

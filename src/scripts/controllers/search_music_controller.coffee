@@ -8,6 +8,8 @@ class SearchMusic extends Controller
     do @get_playlists
     do @define_template_methods
     
+    do @start_search
+
   cache_DOM_elements: ->
     @form = @$element.find('form')
     @search_field = @form.find('input[type=text]')
@@ -21,6 +23,9 @@ class SearchMusic extends Controller
     @$scope.create_playlist = @create_playlist
     @$scope.verify_music = @verify_music
 
+  start_search: ->
+    @search @search_field.val()
+
   set_timeout: (e) =>
     if @searchTimeout? then clearTimeout @searchTimeout
 
@@ -28,7 +33,7 @@ class SearchMusic extends Controller
 
     @searchTimeout = setTimeout( =>
       @search value
-    , 250)
+    , 500)
       
   search: (value) =>
     @spotifyService.search_track(value)

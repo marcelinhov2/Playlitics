@@ -1,7 +1,7 @@
 #search-music-directive
   form
     fieldset
-      input(type="text", placeholder="Ex: The Trooper")
+      input(type="text", value="Iron Maiden")
 
   ul.tracks(ng-if="tracks.items.length")
     li(ng-repeat="track in tracks.items")
