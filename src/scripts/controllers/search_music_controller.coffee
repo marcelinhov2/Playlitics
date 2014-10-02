@@ -19,6 +19,7 @@ class SearchMusic extends Controller
   define_template_methods: ->
     @$scope.add_to_playlist = @add_to_playlist
     @$scope.create_playlist = @create_playlist
+    @$scope.verify_music = @verify_music
 
   set_timeout: (e) =>
     if @searchTimeout? then clearTimeout @searchTimeout
@@ -45,4 +46,10 @@ class SearchMusic extends Controller
   add_to_playlist: (track, playlist) =>
     @playlistsService.add_track(track, playlist)
       .then (response) =>
-        alert response
+        @verify_music track, playlist
+
+  verify_music: (track, playlist) =>
+    exists = _.find playlist.tracks,
+      id: track.id
+
+    return if exists then true else false

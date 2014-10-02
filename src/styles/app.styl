@@ -34,15 +34,15 @@ body
         font-family 'Open Sans Condensed', sans-serif
         color GREEN
         text-transform uppercase
-        font-size 30px
+        font-size 36px
         text-decoration none
 
     h2
       font-family 'Open Sans Condensed', sans-serif
       color GRAY
       text-transform uppercase
-      font-size 16.7px
-      margin-top 5px
+      font-size 24px
+      margin-top 10px
 
     ul
       display inline-block
@@ -69,7 +69,7 @@ body
       background BG
       border 1px solid DGRAY
       color GRAY
-      width 180px
+      width 270px
       padding 5px 10px
       outline none
 
@@ -181,6 +181,11 @@ body
 
                     &:hover
                       color WHITE
+
+                    &.active
+                      pointer-events none
+                      cursor default
+                      color GREEN !important
 
   #home
     padding-bottom 15px

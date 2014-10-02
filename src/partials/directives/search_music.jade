@@ -17,5 +17,5 @@
             ul
               li
                 a(ng-click="create_playlist(track)") Create a new playlist
-              li(ng-repeat="playlist in playlists")
-                a(ng-click="add_to_playlist(track, playlist)") {{playlist.name}}
+              li(ng-repeat="playlist in playlists | orderBy:'name'")
+                a(ng-click="add_to_playlist(track, playlist)", ng-class="{active : verify_music(track, playlist)}") {{playlist.name}}
