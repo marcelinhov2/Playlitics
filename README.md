@@ -12,7 +12,7 @@ AngularJS application using Angular-Kickoff
 
 Clone repo using git
 ```sh
-git@github.com:marcelinhov2/Playlitics.git
+git clone git@github.com:marcelinhov2/Playlitics.git
 cd Playlitics
 ```
 
