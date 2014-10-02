@@ -1,5 +1,5 @@
 ul
-  li(ng-repeat="playlist in playlists")
+  li(ng-repeat="playlist in playlists | orderBy:'name'")
     h3 
       | {{playlist.name}} <br />
       span Duration: {{playlist.duration | timeConversion}} <br />
@@ -8,17 +8,26 @@ ul
 
     ul.tracks
       li(ng-repeat="track in playlist.tracks | orderBy:predicate")
-        img(ng-src="{{track.album.images[2].url}}")
+        img(ng-src="{{track.album.images[1].url}}")
         div.info
-          h3 {{track.name}}
-          p {{track.artists[0].name}}
-          p(ng-if="track.duration_ms") Order: {{track.order }}
-          p(ng-if="track.duration_ms") Duration: {{track.duration_ms | timeConversion }}
-          p(ng-if="track.popularity") Popularity: {{track.popularity}}
-          a(ng-click="remove_from_playlist(track, playlist)") Remove from playlist
+          .track
+            .text
+              h3 {{track.name}}
+              p {{track.artists[0].name}}
+              .extra
+                p(ng-if="track.duration_ms") 
+                  span Duration: 
+                  | {{track.duration_ms | timeConversion }}
+                p(ng-if="track.popularity") 
+                  span Popularity: 
+                  | {{track.popularity}}
 
-          ul
-            li
-              a(ng-click="order(track, playlist, 'up')") Up
-            li
-              a(ng-click="order(track, playlist, 'down')") Down
+          .options
+            div
+              ul
+                li
+                  a(ng-click="order(track, playlist, 'up')") Move to left
+                li
+                  a(ng-click="order(track, playlist, 'down')") Move to right
+                li
+                  a.remove(ng-click="remove_from_playlist(track, playlist)") Remove from playlist

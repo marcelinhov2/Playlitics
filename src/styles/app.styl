@@ -36,6 +36,127 @@ body
   position relative
   display table-cell
   vertical-align middle
+
+  h2
+    font-family 'Open Sans Condensed', sans-serif
+    color GRAY
+    text-transform uppercase
+    font-size 24px
+    text-align center
+
+  .tracks
+    margin 15px -10px 0
+    > li
+      position relative
+      overflow hidden
+      display inline-block
+      margin 12px
+
+      img
+        width 180px
+        height 180px
+
+      .info
+        cursor default
+        position absolute
+        top 0
+        left 0
+        width 100%
+        height 140px
+        background rgba(18,19,20, .95)
+        padding 20px 0
+        transition background 0.5s ease;
+
+        &:hover
+          background rgba(18,19,20, .98)
+
+          .track
+            right 100%
+
+          .options
+            right 0
+
+        .track
+          width 100%
+          height 100%
+          display table
+          position absolute
+          right 0
+          transition right 0.5s ease;
+
+          .text
+            display table-cell
+            vertical-align middle
+
+            h3, p
+              text-align center
+              padding 0 10px
+              font-family 'Open Sans Condensed', sans-serif
+              color GRAY
+              text-transform uppercase
+              font-size 12px
+              text-decoration none
+
+            h3
+              padding 5px 10px
+
+            .extra
+              margin-top 20px
+              p
+                span
+                  color GREEN
+
+        .options
+          width 100%
+          height 100%
+          display table
+          position relative
+          right -100%
+          top 0
+          transition right 0.5s ease;
+
+          .remove
+            color #9d0007
+
+            &:hover
+              color #df0000
+
+          div
+            display table-cell
+            vertical-align middle
+
+            h4
+              padding-bottom 15px
+              text-align center
+              font-family 'Open Sans Condensed', sans-serif
+              color GREEN
+              text-transform uppercase
+              font-size 14px
+              text-decoration none
+              display block
+            ul
+              overflow auto
+              max-height 80%
+
+              li
+                a
+                  cursor pointer
+                  text-align center
+                  padding 2px 0
+                  font-family 'Open Sans Condensed', sans-serif
+                  color GRAY
+                  text-transform uppercase
+                  font-size 12px
+                  text-decoration none
+                  display block
+
+                  &:hover
+                    color WHITE
+
+                  &.active
+                    pointer-events none
+                    cursor default
+                    color GREEN !important
   
   #header
     text-align center
@@ -48,13 +169,6 @@ body
         text-transform uppercase
         font-size 36px
         text-decoration none
-
-    h2
-      font-family 'Open Sans Condensed', sans-serif
-      color GRAY
-      text-transform uppercase
-      font-size 24px
-      margin-top 10px
 
     ul
       display inline-block
@@ -84,111 +198,15 @@ body
       width 270px
       padding 5px 10px
       outline none
-
-    > ul
-      margin 15px -10px 0
-      > li
-        position relative
-        overflow hidden
-        display inline-block
-        margin 12px
-
-        img
-          width 180px
-          height 180px
-
-        .info
-          cursor default
-          position absolute
-          top 0
-          left 0
-          width 100%
-          height 140px
-          background rgba(18,19,20, .95)
-          padding 20px 0
-          transition background 0.5s ease;
-
-          &:hover
-            background rgba(18,19,20, .98)
-
-            .track
-              right 100%
-
-            .options
-              right 0
-
-          .track
-            width 100%
-            height 100%
-            display table
-            position absolute
-            right 0
-            transition right 0.5s ease;
-
-            .text
-              display table-cell
-              vertical-align middle
-
-              h3, p
-                text-align center
-                padding 0 10px
-                font-family 'Open Sans Condensed', sans-serif
-                color GRAY
-                text-transform uppercase
-                font-size 12px
-                text-decoration none
-
-              h3
-                padding 5px 10px
-
-          .options
-            width 100%
-            height 100%
-            display table
-            position relative
-            right -100%
-            top 0
-            transition right 0.5s ease;
-
-            div
-              display table-cell
-              vertical-align middle
-
-              h4
-                padding-bottom 15px
-                text-align center
-                font-family 'Open Sans Condensed', sans-serif
-                color GREEN
-                text-transform uppercase
-                font-size 14px
-                text-decoration none
-                display block
-              ul
-                overflow auto
-                max-height 80%
-
-                li
-                  a
-                    cursor pointer
-                    text-align center
-                    padding 2px 0
-                    font-family 'Open Sans Condensed', sans-serif
-                    color GRAY
-                    text-transform uppercase
-                    font-size 12px
-                    text-decoration none
-                    display block
-
-                    &:hover
-                      color WHITE
-
-                    &.active
-                      pointer-events none
-                      cursor default
-                      color GREEN !important
+      margin-top 10px
 
   #home
     padding-bottom 15px
+
+  #playlists
+    display block
+    margin 0 auto
+    text-align center
 
   #modal_playlist
     position fixed
