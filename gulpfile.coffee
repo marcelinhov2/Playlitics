@@ -105,9 +105,7 @@ gulp.task 'watch', ->
 gulp.task 'scripts:prod', ['move_bower:prod'], ->
   gulp.src paths.scripts
     .pipe do classify
-    .pipe do sourcemaps.init
     .pipe coffee bare: false
-    .pipe do sourcemaps.write
     .pipe concat 'main.js'
     .pipe gulp.dest 'dist/scripts'
 
