@@ -1,4 +1,7 @@
 #list_playlists
+  .sorry(ng-if="!playlists.length")
+    h3 Sorry, but you have no playlists yet.
+
   ul
     li(ng-repeat="playlist in playlists | orderBy:'name'")
       h3 {{playlist.name}}
