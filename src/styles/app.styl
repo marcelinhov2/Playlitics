@@ -11,6 +11,9 @@ body, html
 
 body
   background BG
+  width 100%
+  height 100%
+  display table
 
 #wrap
   padding 20px 10px 10px
@@ -18,9 +21,12 @@ body
   max-width 1004px
   margin 0 auto
   color TEXT
+  position relative
+  display table-cell
+  vertical-align middle
   
   #header
-    display inline-block
+    text-align center
     margin-bottom 10px
     h1
       display inline-block
@@ -55,9 +61,11 @@ body
             color WHITE
 
   #search-music-directive
-    display inline-block
+    display block
+    margin 0 auto
+    text-align center
+
     input
-      margin 0
       background BG
       border 1px solid DGRAY
       color GRAY
@@ -173,19 +181,6 @@ body
 
                     &:hover
                       color WHITE
-
-  #footer
-    position fixed
-    padding 10px 0
-    bottom 0
-    background BG
-    width 100%
-
-    p
-      font-family 'Open Sans Condensed', sans-serif
-      color GRAY
-      text-transform uppercase
-      font-size 12px
 
   #home
     padding-bottom 15px
