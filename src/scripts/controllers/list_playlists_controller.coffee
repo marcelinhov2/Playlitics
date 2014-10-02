@@ -16,7 +16,8 @@ class ListPlaylists extends Controller
 
   remove_from_playlist: (track, playlist) =>
     @playlistsService.remove_track(track, playlist)
-      .then (response) =>
+      .then =>
+        do @get_playlists
 
   order: (track, playlist, direction) =>
     @playlistsService.reorder(track, playlist, direction)

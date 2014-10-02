@@ -27,7 +27,7 @@ class Playlists extends Service
       current_playlists = if response then response else []
 
       if playlist.id == undefined
-        playlist.id = if response then response.length else 0
+        playlist.id = new Date().getTime()
       else
         others_playlists = _.reject current_playlists,
           id: playlist.id
@@ -35,6 +35,21 @@ class Playlists extends Service
         current_playlists = others_playlists
 
       current_playlists.push playlist
+      @localStorageService.set 'playlists', current_playlists
+
+      defer.resolve {}
+      return defer.promise
+
+  delete: (playlist) ->
+    defer = @$q.defer()
+
+    @list().then (response) =>
+      current_playlists = if response then response else []
+
+      playlists = _.reject current_playlists,
+        id: playlist.id
+
+      current_playlists = playlists
       @localStorageService.set 'playlists', current_playlists
 
       defer.resolve {}
@@ -91,8 +106,15 @@ class Playlists extends Service
       id: track.id
 
     playlist = @calculate_playlist_duration_coolness playlist
-    @save playlist
-    defer.resolve "Track removed!"
+
+    if playlist.tracks.length 
+      @save(playlist)
+        .then ->
+          defer.resolve "Track removed!" 
+    else 
+      @delete playlist
+        .then ->
+          defer.resolve "Track removed and Playlist deleted!" 
 
     return defer.promise
 
