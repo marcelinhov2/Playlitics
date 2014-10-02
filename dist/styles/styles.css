@@ -8698,6 +8698,7 @@ body *:-ms-input-placeholder {
   display: table;
   position: absolute;
   right: 0;
+  top: 0;
   transition: right 0.5s ease;
 }
 #wrap .tracks > li .info .track .text {
