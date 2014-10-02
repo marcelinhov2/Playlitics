@@ -27,6 +27,12 @@ body
   *:-ms-input-placeholder
     color DGRAY
 
+#loader
+  position absolute
+  bottom 10px
+  right 10px
+  z-index 9
+
 #content
   position relative
   min-height 60px
@@ -293,6 +299,10 @@ body
               font-size 14px
               margin 0 10px 0 0
               padding 0 10px 1px 10px
+              opacity .8
+
+              &:hover
+                opacity 1
 
             a
               background DGRAY

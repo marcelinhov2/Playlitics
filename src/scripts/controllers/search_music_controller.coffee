@@ -8,7 +8,7 @@ class SearchMusic extends Controller
     do @get_playlists
     do @define_template_methods
     
-    do @start_search
+    # do @start_search
 
   cache_DOM_elements: ->
     @form = @$element.find('form')
@@ -36,9 +36,12 @@ class SearchMusic extends Controller
     , 500)
       
   search: (value) =>
+    @$rootScope.is_loading = true
+
     @spotifyService.search_track(value)
       .then (response) =>
         @$scope.tracks = if response.status == 200 then response.data.tracks else {}  
+        @$rootScope.is_loading = false
 
   get_playlists: =>
     @playlistsService.list()

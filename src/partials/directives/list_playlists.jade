@@ -9,7 +9,7 @@
       p
         span Duration: {{playlist.duration | timeConversion}} <br />
         span Coolness: {{playlist.coolness}} <br />
-        span Tags: {{playlist.tags}}
+        span(ng-if="playlist.tags.length") Tags: {{playlist.tags}}
 
       ul.tracks
         li(ng-repeat="track in playlist.tracks | orderBy:predicate")
