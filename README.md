@@ -1,5 +1,6 @@
 #Playlitics
 AngularJS application using Angular-Kickoff
+(http://playlitics.herokuapp.com)
 
 ##Features
 * Allows users to search - with auto-completion - for songs using Spotify’s Web API;
