@@ -1,0 +1,38 @@
+#list_playlists
+  .sorry(ng-if="!playlists.length")
+    h3 Sorry, but you have no playlists yet.
+
+  ul
+    li(ng-repeat="playlist in playlists | orderBy:'name'")
+      h3 {{playlist.name}}
+
+      p
+        span Duration: {{playlist.duration | timeConversion}} <br />
+        span Coolness: {{playlist.coolness}} <br />
+        span(ng-if="playlist.tags.length") Tags: {{playlist.tags}}
+
+      ul.tracks
+        li(ng-repeat="track in playlist.tracks | orderBy:predicate")
+          img(ng-src="{{track.album.images[1].url}}")
+          div.info
+            .track
+              .text
+                h3 {{track.name}}
+                p {{track.artists[0].name}}
+                .extra
+                  p(ng-if="track.duration_ms") 
+                    span Duration: 
+                    | {{track.duration_ms | timeConversion }}
+                  p(ng-if="track.popularity") 
+                    span Popularity: 
+                    | {{track.popularity}}
+
+            .options
+              div
+                ul
+                  li(ng-class="{disable : disable_up_down(track, playlist, 'up')}")
+                    a(ng-click="order(track, playlist, 'up')") Move to left
+                  li(ng-class="{disable : disable_up_down(track, playlist, 'down')}")
+                    a(ng-click="order(track, playlist, 'down')") Move to right
+                  li
+                    a.remove(ng-click="remove_from_playlist(track, playlist)") Remove from playlist
